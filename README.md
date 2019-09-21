@@ -36,6 +36,28 @@ Histogram
 
 
 
+#Question 1b
+#Removing NAs from Original Completion Date and Revised Completion Date
+#Calculating the project delay by subtracting the Original Completion Date from the Revised Completion Date
+
+foo_09_OCD=subset(foo, foo$OriginalCompletionDate>= "2009-01-01")
+foo_09_RCD=subset(foo, foo$RevisedCompletionDate>= "2009-01-01")
+
+which.have.NAs <- which(is.na(foo_09_no_NAs$OriginalCompletionDate == TRUE))
+foo_09_no_NAs_OCD <- foo_09_no_NAs[-which.have.NAs, ]
+dim(foo_09_no_NAs_OCD)
+
+which.have.NAs <- which(is.na(foo_09_no_NAs$RevisedCompletionDate == TRUE))
+foo_09_no_NAs_RCD <- foo_09_no_NAs[-which.have.NAs, ]
+dim(foo_09_no_NAs_RCD)
+
+project_delay <- as.numeric(foo_09_no_NAs_RCD$RevisedCompletionDate - foo_09_no_NAs_OCD$OriginalCompletionDate)
+summary(project_delay)
+
+
+
+
+
 
 #Question 1c
 which.have.NAs <- which(is.na(foo_09_no_NAs$OriginalCompletionDate == TRUE))
